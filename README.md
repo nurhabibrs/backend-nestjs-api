@@ -74,6 +74,22 @@ DB_NAME=db.sqlite
 
 ---
 
+## Database Migration
+
+Run migration:
+
+```bash
+npm run migration:run
+```
+
+Revert migration:
+
+```bash
+npm run migration:revert
+```
+
+---
+
 ## Running the App
 
 Development mode:
