@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   ConflictException,
   Injectable,
@@ -44,6 +41,7 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       name: user.name,
+      role: user.role,
     };
 
     return {
@@ -68,6 +66,7 @@ export class AuthService {
       email: registerDto.email,
       password: hashedPassword,
       phone_number: registerDto.phone_number,
+      role: registerDto.role,
     });
 
     const saved = await this.usersRepository.save(user);

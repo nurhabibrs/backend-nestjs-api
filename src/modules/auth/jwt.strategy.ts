@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
@@ -30,14 +27,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   validate(req: Request, payload: JwtPayload) {
-    const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
-    if (token && this.tokenBlacklistService.has(token as string)) {
+    const token = ExtractJwt.fromAuthHeaderAsBearerToken()(req) as string;
+    if (token && this.tokenBlacklistService.has(token)) {
       throw new UnauthorizedException('Token has been invalidated');
     }
     return {
-      userId: payload.userId,
-      email: payload.email,
-      name: payload.name,
+      userId: payload.userId as number,
+      email: payload.email as string,
+      name: payload.name as string,
+      role: payload.role as string,
     };
   }
 }
