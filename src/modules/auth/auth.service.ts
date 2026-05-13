@@ -47,7 +47,7 @@ export class AuthService {
     };
 
     return {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      type: 'bearer',
       access_token: this.jwtService.sign(payload),
     };
   }
