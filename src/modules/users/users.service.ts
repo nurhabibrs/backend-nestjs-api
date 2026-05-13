@@ -30,11 +30,8 @@ export class UsersService {
     }
 
     if (createUserDto.password) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      createUserDto.password = (await bcrypt.hash(
-        createUserDto.password,
-        10,
-      )) as string;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      createUserDto.password = await bcrypt.hash(createUserDto.password, 10);
     }
 
     const user = this.usersRepository.create(createUserDto);

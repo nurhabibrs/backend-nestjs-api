@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy, StrategyOptionsWithRequest } from 'passport-jwt';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Request } from 'express';
 
 import { TokenBlacklistService } from './token-blacklist.service';
@@ -23,7 +23,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
       secretOrKey: secret,
       passReqToCallback: true,
-    } as StrategyOptionsWithRequest);
+    });
   }
 
   validate(req: Request, payload: JwtPayload) {
@@ -32,10 +32,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('Token has been invalidated');
     }
     return {
-      userId: payload.userId as number,
-      email: payload.email as string,
-      name: payload.name as string,
-      role: payload.role as string,
+      userId: payload.userId,
+      email: payload.email,
+      name: payload.name,
+      role: payload.role,
     };
   }
 }
