@@ -22,7 +22,7 @@ export class User {
   @Column({ unique: true, comment: 'alamat email' })
   email!: string;
 
-  @Column({ select: false, comment: 'kata sandi' })
+  @Column({ comment: 'kata sandi' })
   password!: string;
 
   @Column({ nullable: true, comment: 'nomor telepon' })

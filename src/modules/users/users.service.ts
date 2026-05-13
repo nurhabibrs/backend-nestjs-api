@@ -70,7 +70,7 @@ export class UsersService {
       .orderBy('user.created_at', order === 'desc' ? 'DESC' : 'ASC');
 
     if (name) {
-      qb.andWhere('user.name ILIKE :name', { name: `${name}%` });
+      qb.andWhere('LOWER(user.name) LIKE LOWER(:name)', { name: `${name}%` });
     }
 
     if (role) {
