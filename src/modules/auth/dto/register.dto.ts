@@ -15,7 +15,7 @@ export class RegisterDto {
   name!: string;
 
   @ApiProperty({
-    example: 'john@company.co.id',
+    example: 'john@mail.co.id',
     description: 'Company email address',
   })
   @ValidateIf(
